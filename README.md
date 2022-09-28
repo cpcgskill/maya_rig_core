@@ -28,7 +28,7 @@ python -m pip install maya-rig-core
 2. 请使用cmd
 
 ```commandline
-"C:\Program Files\Autodesk\Maya2018\bin\mayapy.exe" -m pip install cpmel
+"C:\Program Files\Autodesk\Maya2018\bin\mayapy.exe" -m pip install maya-rig-core
 ```
 
 ### 使用

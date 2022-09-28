@@ -8,7 +8,7 @@ lib_name = 'maya_rig_core'
 author = 'cpcgskill',
 author_email = 'cpcgskill@outlook.com'
 
-version = '0.1.1'
+version = '0.1.2'
 
 description = '一个好用的绑定核心库'
 with open("README.md", "rb") as f:
