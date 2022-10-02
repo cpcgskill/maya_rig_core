@@ -35,13 +35,21 @@ class Joint(object):
         # 如果create_only属性为真将会仅创建，而不参与蒙皮
         self.create_only = create_only
 
-        self.parent = None
-        self.childs = list()
+        self._parent = None
+        self._childs = list()
+
+    @property
+    def parent(self):
+        return self._parent
+
+    @property
+    def childs(self):
+        return self._childs
 
     def add_childs(self, *jins):
         for jin in jins:
             self.childs.append(jin)
-            jin.parent = self
+            jin._parent = self
         return self
 
     def add_child_from_object(self, obj):
