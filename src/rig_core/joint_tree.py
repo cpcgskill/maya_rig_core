@@ -14,6 +14,9 @@ u"""
 from __future__ import unicode_literals, print_function, division
 import cpmel.cmds as cc
 
+if False:
+    from rig_core.ctx import Ctx
+
 
 class Joint(object):
     def __init__(
@@ -101,7 +104,7 @@ def get_joint_output_name(root):
     return name
 
 
-def _create_real_joints_from_root(root, parent, control_table):
+def _create_real_joints_from_root(ctx, root, parent, control_table):
     # name = 'joint'
     # if root.create_only:
     #     if parent is not None:
@@ -121,23 +124,26 @@ def _create_real_joints_from_root(root, parent, control_table):
         n['jointOrient'] = n.get_rotation(False)
         n.set_rotation((0, 0, 0), False)
         n.scale = root.obj.scale
+        ctx.tag_rt.add_tags(n, *ctx.tag_rt.get_tags(root.obj))
         control_table.append((root.obj, n))
     elif root.point is not None:
         n.set_translation(root.point, ws=True)
+    ctx.tag_rt.add_tags(n, 'skin_joint')
     for i in root.childs:
-        _create_real_joints_from_root(i, n, control_table)
+        _create_real_joints_from_root(ctx, i, n, control_table)
 
 
-def create_real_joints_from_root(root, parent=None):
+def create_real_joints_from_root(ctx, root, parent=None):
     """
 
+    :type ctx: Ctx
     :type root: Joint
     :param parent:
     :return:
     """
     control_table = list()
     for i in root.childs:
-        _create_real_joints_from_root(i, parent, control_table)
+        _create_real_joints_from_root(ctx, i, parent, control_table)
     for con, jin in control_table:
         cc.parentConstraint(con, jin)
         cc.scaleConstraint(con, jin)
