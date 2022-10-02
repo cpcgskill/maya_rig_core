@@ -417,3 +417,6 @@ class Ctx(object):
         """
         with rig_contextmanager.enter_build_block(key) as wing_build_complete_of_nodes:
             yield wing_build_complete_of_nodes
+
+    def create_quick_select_set(self, objs, name='quick_select_set'):
+        return cc.sets(*objs, n=name)
