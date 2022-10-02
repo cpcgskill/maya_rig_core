@@ -48,3 +48,6 @@ class Filter(object):
 
     def __or__(self, other):
         return Filter(self.ctx, self.to_set() | other.to_set())
+
+
+__all__ = ['Filter']

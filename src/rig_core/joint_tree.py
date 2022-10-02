@@ -147,3 +147,6 @@ def create_real_joints_from_root(ctx, root, parent=None):
     for con, jin in control_table:
         cc.parentConstraint(con, jin)
         cc.scaleConstraint(con, jin)
+
+
+__all__ = ['Joint', 'get_joint_output_name', 'create_real_joints_from_root']

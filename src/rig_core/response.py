@@ -36,3 +36,6 @@ class Response(object):
     @staticmethod
     def from_locals(locals):
         return Response(**{k: v for k, v in locals.items() if k[0] != '_' and k not in {'self'}})
+
+
+__all__ = ['Response']

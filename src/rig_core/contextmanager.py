@@ -95,6 +95,8 @@ def enter_build_block(key=None):
         yield build_complete_of_nodes
 
 
+__all__ = ['create_recorder', 'enter_new_name_space', 'enter_build_block']
+
 if __name__ == "__main__":
     from rig_core.ctx import Ctx
     from maya_test_tools import question_open_maya_gui

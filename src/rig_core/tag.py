@@ -61,3 +61,6 @@ class TagRt(object):
         for o in objs:
             self.add_tags(o, tag)
         return self
+
+
+__all__ = ['TagRt']
