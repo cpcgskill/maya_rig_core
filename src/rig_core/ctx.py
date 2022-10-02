@@ -421,4 +421,5 @@ class Ctx(object):
     def create_quick_select_set(self, objs, name='quick_select_set'):
         return cc.sets(*objs, n=name)
 
+
 __all__ = ['Ctx']
