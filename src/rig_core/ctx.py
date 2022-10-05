@@ -419,7 +419,9 @@ class Ctx(object):
             yield wing_build_complete_of_nodes
 
     def create_quick_select_set(self, objs, name='quick_select_set'):
-        return cc.sets(*objs, n=name)
+        node = cc.sets(*objs, n=name)
+        self.add_nodes(node)
+        return node
 
 
 __all__ = ['Ctx']
