@@ -166,10 +166,11 @@ class Ctx(object):
         else:
             return cls.add_attribute(node, name, default, min, max, typ, key)
 
-    def locator(self, n=None):
+    def locator(self, n=None, tags=[]):
         """
 
         :type n: AnyStr
+        :type tags: List[AnyStr]
         :rtype: cc.Transform
         """
         if n is None:
@@ -178,21 +179,23 @@ class Ctx(object):
             loc = self.create_node('transform')
         else:
             loc = cc.spaceLocator()[0]
+        self.add_tags(loc, *tags)
         loc.rename(n)
         if self.root_object is not None:
             loc.parent = self.root_object
         return loc
 
-    def locator_list(self, count=None, n=None):
+    def locator_list(self, count=None, n=None, tags=[]):
         """
 
         :type count: int
         :type n: AnyStr
+        :type tags: List[AnyStr]
         :rtype: List[cc.Transform]
         """
         if n is None:
             n = 'space_locator'
-        return [self.locator(n="{}{}".format(n, i)) for i in range(count)]
+        return [self.locator(n="{}{}".format(n, i), tags=tags) for i in range(count)]
 
     def controller(self, tags=[], point=None):
         """

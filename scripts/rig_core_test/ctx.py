@@ -13,15 +13,22 @@
 from __future__ import unicode_literals, print_function, division
 from unittest import TestCase
 
+
 class Test(TestCase):
     def test_create_quick_select_set(self):
-        def test():
-            from rig_core.ctx import Ctx
+        from rig_core.ctx import Ctx
 
-            ctx = Ctx()
+        ctx = Ctx()
 
-            joint = ctx.create_dag_node('joint')
+        joint = ctx.create_dag_node('joint')
 
-            ctx.create_quick_select_set([joint], name='test_quick_select_set')
+        ctx.create_quick_select_set([joint], name='test_quick_select_set')
 
-        test()
+    def test_create_locator(self):
+        from rig_core.ctx import Ctx
+
+        ctx = Ctx()
+
+        ctx.locator_list(count=12, tags=['test'])
+
+        print(list(ctx.filter().tag_equal('test')))
