@@ -32,3 +32,12 @@ class Test(TestCase):
         ctx.locator_list(count=12, tags=['test'])
 
         print(list(ctx.filter().tag_equal('test')))
+
+    def test_tag_rt(self):
+        from rig_core.all import Ctx
+
+        ctx = Ctx()
+
+        with ctx.add_base_tags_as_new_tag_rt(['test_add_base_tags_as_new_tag_rt']):
+            test_locator = ctx.locator(tags=['test'])
+        self.assertEqual(ctx.tag_rt.get_tags(test_locator), ['test', 'test_add_base_tags_as_new_tag_rt'])

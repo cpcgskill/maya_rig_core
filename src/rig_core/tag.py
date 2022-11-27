@@ -25,8 +25,9 @@ def attribute_exists(node, attr):
 
 
 class TagRt(object):
-    def __init__(self, tag_attr="tag_runtime"):
+    def __init__(self, tag_attr="tag_runtime", base_tags=[]):
         self.tag_attr = tag_attr
+        self.base_tags = list(base_tags)
         self.cache = dict()
 
     def get_tags(self, obj):
@@ -37,7 +38,7 @@ class TagRt(object):
         if attr:
             tags = json.loads(cc.getAttr(attr))
         else:
-            tags = []
+            tags = self.base_tags
         return tags
 
     def set_tags(self, obj, tags):
@@ -45,7 +46,7 @@ class TagRt(object):
         if attr is None:
             cc.addAttr(obj, ln=self.tag_attr, dt="string")
         attr = attribute_exists(obj, self.tag_attr)
-        tags = list(set(tags))
+        tags = list(set(list(tags) + self.base_tags))
         cc.setAttr(attr, json.dumps(tags), type="string")
         self.cache[hash(obj)] = tags
         return self

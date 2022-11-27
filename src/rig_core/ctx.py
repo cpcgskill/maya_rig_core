@@ -297,6 +297,13 @@ class Ctx(object):
         yield
         self.tag_rt = old_rt
 
+    @contextlib.contextmanager
+    def add_base_tags_as_new_tag_rt(self, base_tags):
+        old_rt = self.tag_rt
+        self.tag_rt = tag.TagRt(tag_attr=old_rt.tag_attr, base_tags=old_rt.base_tags + list(base_tags))
+        yield
+        self.tag_rt = old_rt
+
     @property
     def all_node_db_rt(self):
         return self._all_node_db_rt
