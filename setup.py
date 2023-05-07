@@ -8,7 +8,7 @@ lib_name = 'maya_rig_core'
 author = 'cpcgskill',
 author_email = 'cpcgskill@outlook.com'
 
-version = '0.2.2'
+version = '0.2.3'
 
 description = '一个好用的绑定核心库'
 with open("README.md", "rb") as f:
@@ -23,7 +23,7 @@ license = 'Apache Software License (Apache 2.0)'
 python_requires = '>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*'
 install_requires = [
     'maya-test-tools==0.1.0',
-    'cpmel==3.4.1',
+    'cpmel==3',
 ]
 
 setuptools.setup(
